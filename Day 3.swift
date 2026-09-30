@@ -225,7 +225,7 @@ var assignments = [
     roster[3]: role.healer
 ]
 
-var skills = Set ([
+var skills = Set([
     "healing",
     "stealth"
 ])
@@ -236,3 +236,36 @@ let canHeal = skills.contains("healing")
 print("This is \(roster[0]). His role is \(role.damage). it is \(canHeal) that the party has a healer. Their healer is \(roster[3]).")
 
 print("\(assignments[roster[1]], default: "0")")
+
+print(" ")
+
+// The Task: The Party Loot System
+// The Enum: Create an enum called Rarity with cases for common, uncommon, rare, and legendary.
+// The Array: Create an array called foundItems representing a list of loot your party found after completing a big group habit (e.g., "Health Potion", "Iron Sword", "Minor Ring of Warding").
+// The Dictionary: Create a dictionary called lootRarities that maps each item in your array to its Rarity.
+// The Set: Create a set called claimedLoot containing the names of items that party members have already called dibs on.
+// The Output: Write a print statement that checks if the "Magic Ring" is still available (by checking if it is not in the claimedLoot set), and another that prints the rarity of the "Iron Sword" from your dictionary.
+
+enum ItemRarity: String {
+    case common, uncommon, rare, legendary
+}
+
+var foundItems = ["Lesser Healing Potion", "Iron Sword", "Ring of Minor Warding"]
+
+let lootRarities = [
+    "\(foundItems[0])": ItemRarity.common,
+    "\(foundItems[1])": ItemRarity.common,
+    "\(foundItems[2])": ItemRarity.uncommon
+]
+
+var claimedLoot = Set([
+    "\(foundItems[0])",
+    "\(foundItems[2])"
+])
+
+claimedLoot.remove(foundItems[2]) // indicates someone changed their mind and took different loot
+claimedLoot.insert(foundItems[1])
+
+print(claimedLoot.contains(foundItems[2]))
+
+print("The \(foundItems[1]) is a \(lootRarities[foundItems[1], default: ItemRarity.rare]) item")

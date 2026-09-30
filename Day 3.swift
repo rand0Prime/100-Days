@@ -130,9 +130,7 @@ print(" ")
 // 4. Print the name of the character currently in the new last position.
 
 var partyMembers = ["Luthor", "Frazil", "Oneword", "Fever", "Nel"]
-
 let memberNames = "\(partyMembers[0]), \(partyMembers[1]), \(partyMembers[2]), \(partyMembers[3]), and \(partyMembers[4])"
-
 print("The original party included \(partyMembers.count) members: \(memberNames).")
 
 partyMembers.append("Bek")
@@ -235,4 +233,6 @@ var skills = Set ([
 skills.insert("lockpicking")
 let canHeal = skills.contains("healing")
 
-print("This is \(roster[0]). His role is \(role.damage). it is \(canHeal) that the party has a healer. Their healer is ")
+print("This is \(roster[0]). His role is \(role.damage). it is \(canHeal) that the party has a healer. Their healer is \(roster[3]).")
+
+print("\(assignments[roster[1]], default: "0")")

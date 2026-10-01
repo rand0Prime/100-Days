@@ -170,3 +170,53 @@ var equippedItems = Set<String>([
 
 print(equippedItems.contains(warriorLoot[0]))
 print(itemLibrary[axe, default: .consumable])
+
+print(" ")
+
+// The Task: The Daily Quest Board
+// The Enum: Create an enum called QuestStatus with cases for locked, available, and completed.
+// The Arrays: Create two arrays: mainQuests and sideQuests, each containing two quest names.
+// The Dictionary: Create a dictionary called questLog that maps all four quests to their current QuestStatus. (Try using the single-initialization style we just discussed!)
+// The Set: Create a set called completedToday containing the names of the quests you finished today.
+// The Output: Write a print statement that checks if the first main quest is in the completedToday set, and another that prints its current status from the dictionary (using a default of .locked).
+
+enum QuestStatus {
+    case locked, available, active, complete
+}
+
+var mainQuests = ["Clearing House", "Push Back The Goblins"]
+var sideQuests = ["Upgrading Your Armor", "Buy a Potion"]
+// these set up the arrays
+
+let mainQuest1 = mainQuests[0]
+let mainQuest2 = mainQuests[1]
+let sideQuest1 = sideQuests[0]
+let sideQuest2 = sideQuests[1]
+// these assign the array contents to constants for easier readability and usage
+
+var partyQuestLog: [String: QuestStatus] = [
+    mainQuest1: .complete,
+    mainQuest2: .active,
+    sideQuest1: .complete,
+    sideQuest2: .locked
+]
+// This creates the dictionary assigning quest status values to the quests
+
+var completedToday = Set([
+    mainQuest1,
+    sideQuest1
+// this makes a set of quests that I marked as complete in the dictuonary
+    
+])
+print(completedToday.contains(mainQuest1))
+// prints whether or not the first main quest is in the completedToday set
+
+print(partyQuestLog[mainQuest1, default: .locked])
+// references the dictionary to see the status of main quest 1
+
+print(partyQuestLog.count)
+// counts the number of quests in the party quest log
+print(mainQuest2)
+// prints the name of the quest
+print(partyQuestLog[mainQuest1, default: .active])
+// prints the status of main quest 1, using active as the default state in the event the key/value does not exist - prevents app crash

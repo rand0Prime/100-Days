@@ -115,4 +115,58 @@ completedDailies.remove(adventuringParty[0])
 print(completedDailies.contains("Luthor"))
 print("\(adventuringParty[0]) has not completed their dailies because they have \(partyStatus["\(adventuringParty[0])", default: .active]).")
 
+print(" ")
+
 // I know I could have made constants to improve the readability of this code, but I wanted the practice in referring to array and set items.
+
+// The Task: The Habit Reward System
+// The Enum: Create an enum called RewardType with cases for experience, gold, and item.
+// The Dictionary: Create a dictionary called habitRewards that maps three different habits (as Strings) to a RewardType.
+// The Output: Write a print statement that announces the reward for one of your habits, using a default value of .experience.
+
+enum RewardType {
+    case xp, gold, item
+}
+var habitRewards = [String: RewardType]()
+habitRewards["take out the trash"] = .xp
+habitRewards["go for a walk"] = .xp
+habitRewards["do 10 pushups"] = .xp
+
+print("Habit logged. You earned 3 \(habitRewards["take out the trash", default: .xp]).")
+
+// The Task: The Party Loot Distribution
+// The Enum: Create an enum called ItemCategory with cases for melee, magic, and consumable.
+// The Arrays: Create two separate arrays: one called warriorLoot and one called mageLoot, each containing two item names.
+// The Dictionary: Create a dictionary called itemLibrary that maps all four items (from both arrays) to their respective ItemType.
+// The Set: Create a set called equippedItems containing the names of the items the party has currently equipped.
+// The Output: Write a print statement that checks if the first item in the warriorLoot array is equipped (using the set), and another print statement that displays its ItemType from the dictionary (using a default of .consumable).
+
+enum ItemCategory {
+    case melee, magic, consumable
+}
+
+var warriorLoot = [String]()
+warriorLoot.append("axe")
+warriorLoot.append("great hammer")
+
+var mageLoot = [String]()
+mageLoot.append("sword")
+mageLoot.append("staff")
+
+let axe = warriorLoot[0]
+let greatHammer = warriorLoot[1]
+let sword = mageLoot[0]
+let staff = mageLoot[1]
+
+var itemLibrary = [String: ItemCategory]()
+itemLibrary[axe] = .melee
+itemLibrary[greatHammer] = .melee
+itemLibrary[sword] = .melee
+itemLibrary[staff] = .magic
+
+var equippedItems = Set<String>([
+    axe, greatHammer, sword
+])
+
+print(equippedItems.contains(warriorLoot[0]))
+print(itemLibrary[axe, default: .consumable])

@@ -224,3 +224,51 @@ default:
 }
 // refers to the dragon quest in the activeQuests dictionary and lists commentary to be said depending on the quest difficulty
 
+// PROBLEM 1: THE LOOT DROP FILTER
+// Concepts: Arrays, Sets, Conditionals
+// Create an array called droppedLoot containing several item names as strings, with a few duplicates (e.g., "Iron Sword", "Health Potion", "Iron Sword", "Shield").
+// Create a Set from this array to get a unique list of items.
+// Write an if/else statement that checks if the unique item count is less than the original array count.
+// If it is, print "You found duplicate items!" and then print the unique list. Otherwise, print "All unique loot!"
+
+var droppedLoot = ["Iron Sword", "Health Potion", "Iron Sword", "Recurve Bow", "Bamboo Staff"]
+let lootList = Set(droppedLoot)
+
+if lootList.count == droppedLoot.count {  // This will run a check of the set info against the array to see if there are duplicates
+        print("Unique items found! Loot list: \(lootList)")
+   
+    
+} else {
+    print("You've found duplicate items. Be sure to sell them for gold or scrap them for resourses.")
+}
+
+print("")
+
+// Concepts: Enums, Dictionaries, Switch Statements
+// Create an enum called PlayerState with cases for active, resting, and fainted.
+// Create a dictionary called partyStatus where the keys are character names (Strings) and the values are their PlayerState. Add at least three characters.
+// Use a switch statement on one of the characters to print a specific message for each state (e.g., "Ready for battle!" for .active).
+// Bonus: Try to use the dictionary's default: parameter in your switch statement to handle any missing keys safely.
+
+enum PlayerState {
+    case active, resting, fainted
+}
+
+var partyStatus = [String: PlayerState]()
+partyStatus["Luthor"] = .active
+partyStatus["Bek"] = .active
+partyStatus["Mavvius"] = .resting
+partyStatus["Fever"] = .fainted
+// This assigns player status to each player, referencing the PlayerState enum
+
+switch partyStatus ["Bek"] {
+case .active:
+    print("Ready to go!")
+case .resting:
+    print("They need a little more time.")
+case .fainted:
+    print("Medical attention required.")
+default:
+    print("They can't be found...")
+}
+// Depending on the player status of Bek, this will print out the case's string

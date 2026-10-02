@@ -162,3 +162,65 @@ print(enemyLives)
 
 // this can also be written more efficiently and without assigning the enemyLives constant:
 print(damageRoll > enemyHP ? "No" : "Yes")
+
+print("")
+
+// PROBLEM 1: THE DAILY STREAK MULTIPLIER
+// Concepts: Variables, Conditionals, Ternary Operator
+// Create a variable called dailyStreak and set it to an integer. Then, create a constant called baseXP set to 50. Use a ternary operator to calculate the final XP awarded: if the dailyStreak is greater than or equal to 7, multiply the baseXP by 2; otherwise, just award the baseXP. Finally, print the result.
+
+var dailyStreak = 7
+let baseXP = 50
+
+print("Quest complete. XP gained: \(dailyStreak >= 7 ? baseXP * 2 : baseXP).")
+print("")
+
+// PROBLEM 2: THE PARTY ROSTER CHECK
+// Concepts: Arrays, Sets, if/else
+// Create an array called currentParty containing the names of four party members, with one name duplicated (e.g., "Luthor", "Frazil", "OneWord", "Luthor"). Then, create a Set from that array to remove duplicates. Write an if/else statement that checks if the count of the Set is less than the count of the array. If it is, print a warning that duplicate members are not allowed. Otherwise, print that the party is valid.
+
+var currentParty = ["Luthor", "Frazil", "OneWord", "Luthor"]
+var currentPartyCheck = Set(currentParty)
+
+let partySize = currentPartyCheck.count
+
+if partySize < currentParty.count {
+    print("Warning, duplicate party members are not allowed.")
+} else {
+    print("Party may proceed to quest.")
+}
+    
+print("")
+
+// PROBLEM 3: THE QUEST BOARD
+// Concepts: Enums, Dictionaries, switch Statements
+// Create an enum called QuestDifficulty with cases for easy, medium, and hard. Next, create a dictionary called activeQuests where the keys are quest names (Strings) and the values are their QuestDifficulty. Add at least two quests. Finally, pick one quest from the dictionary and use a switch statement to print a custom message based on its difficulty (e.g., "This should be a quick task!" for easy, or "Prepare for a real challenge!" for hard).
+
+enum QuestDifficulty {
+    case easy, medium, hard
+}
+let easyQuest = QuestDifficulty.easy
+let medQuest = QuestDifficulty.medium
+let hardQuest = QuestDifficulty.hard
+
+var activeQuests: [String: QuestDifficulty] = [
+    "Clearing the Cave": .easy,
+    "Find Carl's Missing Sandal": .medium,
+    "Persuade the Dragon to Leave": .hard
+]
+
+activeQuests["Defend Against the Trolls"] = .medium
+activeQuests["Upgrade a Weapon"] = .easy
+
+switch activeQuests["Persuade the Dragon to Leave"] {
+case .easy:
+    print("This will be a cakewalk")
+case .medium:
+    print("Be sure to rest before you head out.")
+case .hard:
+    print("Be sure to say goodbye to your loved ones... it could be the last time they see you.")
+default:
+    print("Hmmm...")
+}
+
+

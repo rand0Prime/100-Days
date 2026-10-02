@@ -199,18 +199,18 @@ print("")
 enum QuestDifficulty {
     case easy, medium, hard
 }
-let easyQuest = QuestDifficulty.easy
-let medQuest = QuestDifficulty.medium
-let hardQuest = QuestDifficulty.hard
+// defines the different difficulty levels for quests
 
 var activeQuests: [String: QuestDifficulty] = [
     "Clearing the Cave": .easy,
     "Find Carl's Missing Sandal": .medium,
     "Persuade the Dragon to Leave": .hard
 ]
+// Creates the dictionary for equating quests to difficulty levels
 
 activeQuests["Defend Against the Trolls"] = .medium
 activeQuests["Upgrade a Weapon"] = .easy
+// Adds two quests to the activeQuests dictionary
 
 switch activeQuests["Persuade the Dragon to Leave"] {
 case .easy:
@@ -222,5 +222,5 @@ case .hard:
 default:
     print("Hmmm...")
 }
-
+// refers to the dragon quest in the activeQuests dictionary and lists commentary to be said depending on the quest difficulty
 

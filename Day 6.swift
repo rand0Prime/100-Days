@@ -163,7 +163,7 @@ let goblinAC = 14
 var goblinHP = 55
 // establishes the goblin variable
 
-let critMsg = "CRITICAL HIT! "
+let critMsg = "!!CRITICAL HIT!! "
 
 while goblinHP > 0 {
    

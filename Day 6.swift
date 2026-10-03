@@ -188,6 +188,10 @@ while goblinHP > 0 {
         }
         print("\(partyMembers[0])'s roll of \(p1Atk) hits for \(p1Dmg).")
         goblinHP -= p1Dmg // reduces goblin's health by damage amount
+        if goblinHP < 1 {
+            print("Goblin defeated!")
+            break
+        }
         
     } // end of p1Hit check block
    
@@ -203,6 +207,10 @@ while goblinHP > 0 {
         }
         print("\(partyMembers[1])'s roll of \(p2Atk) hits for \(p2Dmg).")
         goblinHP -= p2Dmg
+        if goblinHP < 1 {
+            print("Goblin defeated!")
+            break
+        }
         
     } // end of p2Hit check block
     
@@ -218,6 +226,10 @@ while goblinHP > 0 {
         }
         print("\(partyMembers[2])'s roll of \(p3Atk) hits for \(p3Dmg).")
         goblinHP -= p3Dmg
+        if goblinHP < 1 {
+            print("Goblin defeated!")
+            break
+        }
         
     } // end of p3Hit check block
    
@@ -233,6 +245,10 @@ while goblinHP > 0 {
         }
         print("\(partyMembers[3])'s roll of \(p4Atk) hits for \(p4Dmg).")
         goblinHP -= p4Dmg
+        if goblinHP < 1 {
+            print("Goblin defeated!")
+            break
+        }
         
     } // end of p4Hit check block
    

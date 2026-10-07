@@ -242,14 +242,14 @@ func massHeal(_ Dictionary:[String: Int], healAmount: Int) {
     // creates the function and expects two parameters at the callsite: a dictionary and an integer
     
     for (member, oldHP) in Dictionary {
-        
+        // assigns 'member' parameter to dictionary key, and 'oldHP' parameter to value in dictionary
         let newHP = oldHP + healAmount
         print("\(member) receives \(healAmount) points of healing, bringing their HP from \(oldHP) to \(newHP).")
     }
 }
 
     massHeal(partyMemberHealth, healAmount: Int.random(in: 1...8 + 4))
-
+// runs function using partyMemberHealth dictionary, and a d8+4 as the healing dice roll
 
 
 

@@ -35,21 +35,19 @@ func calculateTab(_ partyRooms: [String: String]) {
                 let roomCost = 5
                 totalCost += roomCost
                 print("\(name)'s \(roomType) room costs \(roomCost), bringing the total stay to \(totalCost) gold.")
-               
                 
             } else if roomType == "Suite" {
                 let roomCost = 25
                 totalCost += roomCost
                 print("\(name)'s \(roomType) room costs \(roomCost), bringing the total stay to \(totalCost) gold.")
-                
             }
         }
     
     print("The total cost of the night's stay is \(totalCost) gold.")
-
 }
 
 calculateTab(partyRooms)
+print()
 
 // You need to check your party's daily quests and see which ones are ready to be turned in.
 // ✅ The Dictionary: Create a dictionary called questLog where the keys are the quest names (Strings) and the values are a Bool representing whether the quest is completed (true or false). Add at least four quests, some completed and some not.
@@ -79,6 +77,7 @@ func checkQuests(_ Dictionary: [String: Bool]) {
     }
 
 checkQuests(questLog)
+print()
 
 // PROBLEM 1: THE INVENTORY CHECK (EASY)
 // Concepts: Arrays, Loops, Functions
@@ -105,6 +104,7 @@ func checkInventory(_ Array: [String]) {
 }
 
 checkInventory(bagOfHolding)
+print()
 
 //PROBLEM 2: THE STAT BOOSTER (MEDIUM)
 //Concepts: Dictionaries, Functions, Conditionals
@@ -137,6 +137,7 @@ func levelUpStats(_ Dictionary: [String: Int]) {
 }
     levelUpStats(["Strength" : 6])
     // this runs the function with the external parameters of "Strength" and "6"
+print()
 
 //PROBLEM 3: THE HERO'S PROFILE (HARD)
 //Concepts: Tuples, Functions
@@ -162,6 +163,7 @@ func createHero() -> (name: String, class: String, baseHP: Int) {
 let myHero = createHero() // saves the tuple as a constant to be used
 print("Meet \(myHero.name), the \(myHero.class)! They have \(myHero.baseHP) HP.")
 // uses the tuple with the extensions which were described inside the function
+print()
 
 //PROBLEM 4: THE PARTY ROSTER (VERY HARD)
 //Concepts: Arrays of Tuples, Loops, Functions
@@ -217,6 +219,77 @@ printRoster()
 //the problem further I think I could have made the array of tuples directly
 //and then passed those through the printRoster function, but hey, this was
 //just more practice in making tuples via a function with return values! :)
+print()
+
+//Problem 5
+//Your party has taken some damage, and your cleric needs to cast a mass healing spell.
+//The Dictionary: Create a dictionary called partyMemberHealth where the keys are your party members' names (Strings) and the values are their current HP (Integers). Add at least four members.
+//The Function: Write a function called massHeal that accepts two parameters:
+//A dictionary of type [String: Int] (the party).
+//An Int (the amount of HP to heal everyone).
+//The Loop: Inside the function, use a for loop to iterate through the dictionary.
+//The Output: Print out a message for each member showing their name, their old HP, and their new HP.
+//The Call: Call your function, passing in your partyHealth dictionary and a heal amount (e.g., 15).
+
+var partyMemberHealth = [
+    "Frazil": 25,
+    "Mavvius": 28,
+    "OneWord": 41,
+    "Bjol": 30
+]
+
+func massHeal(_ Dictionary:[String: Int], healAmount: Int) {
+    // creates the function and expects two parameters at the callsite: a dictionary and an integer
+    
+    for (member, oldHP) in Dictionary {
+        
+        let newHP = oldHP + healAmount
+        print("\(member) receives \(healAmount) points of healing, bringing their HP from \(oldHP) to \(newHP).")
+    }
+}
+
+    massHeal(partyMemberHealth, healAmount: Int.random(in: 1...8 + 4))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

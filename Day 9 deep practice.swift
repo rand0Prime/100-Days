@@ -192,11 +192,17 @@ print()
 
 //PROBLEM 10: THE INITIATIVE TRACKER
 //Concepts: Arrays, Sorting, Closures
-//Create an array of tuples called combatOrder, where each tuple contains a character's name (String) and their initiative roll (Int). Add four characters with different rolls.
-//Use the .sorted() method with a closure to sort the array so the character with the highest initiative is first.
+//Create an array of tuples called combatOrder, where each tuple contains a
+//character's name (String) and their initiative roll (Int). Add four characters with different rolls.
+//Use the .sorted() method with a closure to sort the array so the
+//character with the highest initiative is first.
 //Print the sorted list.
 
-let combatOrder = [(name: "Luthor", initiative: 13), (name: "Frazil", initiative: 17), (name: "Bek", initiative: 11), (name: "OneWord", initiative: 9)]
+let combatOrder = [
+    (name: "Luthor", initiative: 13),
+    (name: "Frazil", initiative: 17),
+    (name: "Bek", initiative: 11),
+    (name: "OneWord", initiative: 9)]
 // creates an array of tuples which each have two elements: their name and thair Initiative score.
 // The white text descriptors before each tuple element are not necessary, but are useful for calling
 // later in code
@@ -215,7 +221,8 @@ print()
 
 //PROBLEM 11: THE SPELL SLOT FILTER
 //Concepts: Dictionaries, Filtering, Mapping
-//Create a dictionary called spellBook where the keys are spell names (Strings) and the values are their spell levels (Ints). Add at least five spells ranging from level 1 to 3.
+//Create a dictionary called spellBook where the keys are spell names (Strings)
+//and the values are their spell levels (Ints). Add at least five spells ranging from level 1 to 3.
 //Use .filter() to find all spells that are level 2 or higher.
 //Use .map() on the result to create an array of strings that says "Level [X]: [Spell Name]".
 //Print the resulting array.
@@ -229,13 +236,13 @@ let spellbook = [
 ]
 // creates the dictionary
 
-let spellbookLvl_2 = {spellbook.filter { $0.value >= 2}.map {"Level \($0.value): \($0.key)"}
-}
+let spellbookLvl_2 = spellbook.filter { $0.value >= 2}.map {"Level \($0.value): \($0.key)"}
+
 // pulls out all dictionary values that are 2 or higher, and converts them in to
 // a string, adding them to a new constant array.
 
 print(spellbook)
-print(spellbookLvl_2())
+print(spellbookLvl_2)
 
 //PROBLEM 12: THE LOOT VALUE CALCULATOR
 //Concepts: Arrays, Reduce
@@ -252,25 +259,152 @@ print("Total value of loot: \(lootValues.reduce(0, +)) gold.")
 // starting from 0. Could also change the + to a - to have it subtract
 // the values from a starting value of any integer (which would replace the 0
 // in the reduce function
+print()
 
 
+//PROBLEM 13: THE HIGH ROLLERS
+//Concepts: Arrays, Filtering
+//Create an array of integers called savingThrows with the values [4, 18, 9, 20, 14, 2, 16].
+//Use .filter() to keep only the rolls that are 15 or higher.
+//Print the filtered array.
+
+let savingThrows = [4, 18, 9, 20, 14, 2, 16]
+
+print(savingThrows.filter {$0 > 15})
+print()
+
+//PROBLEM 14: THE SPELL SLOT EXPANDER
+//Concepts: Arrays, Mapping
+//Create an array of integers called spellLevels with the values [1, 2, 3, 4].
+//Use .map() to double each value (representing a magical buff that doubles your spell slots).
+//Print the new array.
+
+let spellLevels = [1, 2, 3, 4]
+let buffedSpellLevels = spellLevels.map {$0 * 2}.map {$0 * 2}
+print(buffedSpellLevels)
+print()
+
+//PROBLEM 15: THE PARTY ROSTER
+//Concepts: Dictionaries, Mapping
+//Create a dictionary called partyClasses where the keys are names and the values
+//are their classes (e.g., ["Luthor": "Cleric", "Frazil": "Wizard"]).
+//Use .map() to create an array of strings that reads "[Name] the [Class]".
+//Print the resulting array.
+
+let partyClasses = [
+    "Luthor": "Cleric",
+    "Frazil": "Wizard"
+]
+
+let partyRoles = {partyClasses.map {"\($0.0) the \($0.1)"}}
+print(partyRoles())
+
+//PROBLEM 16: THE TOTAL XP
+//Concepts: Arrays, Reducing
+//Create an array of integers called encounterXP with the values [150, 300, 100, 450].
+//Use .reduce() to calculate the total XP earned from all encounters.
+//Print the total.
+
+let encounterXP = [15, 300, 100, 540]
+print(encounterXP.reduce(0, +))
+print()
+
+//PROBLEM 17: THE ALPHABETICAL INVENTORY
+//Concepts: Arrays, Sorting
+//Create an array of strings called inventory with
+//the values ["Potion", "Sword", "Shield", "Arrow", "Map"].
+//Use .sorted() to sort the items alphabetically.
+//Print the sorted inventory.
+
+var inventoryRaw = [
+    "Potion",
+    "Sword",
+    "Shield",
+    "Arrow",
+    "Map",
+    "Bow",
+    "Chainmail"
+]
+
+var inventory = inventoryRaw.sorted()
+
+print(inventoryRaw)
+print(inventory)
+
+//The Boss Encounter
+// You party just defeated a boss and its minions. You
+// need to calculate the total XP earned, but only from
+// the monsters that were actually defeated.
+// 1. Create an array of tuples representing the ehcounter.
+// Each tuple should contain a monster name (string), its XP value (Int),
+// and a boolean indicating if it was defeated.
+// 2. Using method chaining, do the following:
+// - filter the array to keep only the monsters where defeated is true
+// - map the remaining monsters to extract just their XP totals
+// - Reduce the XP values to get a single total
+// 3. Print the total XP earned from the encounter
+
+let encounterEnemies = [
+    (name: "Goblin", xp: 50, defeated: true),
+    (name: "Orc", xp: 100, defeated: true),
+    (name: "Dragon", xp: 5000, defeated: false),
+    (name: "Kobold", xp: 25, defeated: true)
+]
+// creates an array of tuples
+
+print(encounterEnemies.filter { $0.defeated == true}.map {$0.xp}.reduce(0, +))
+print()
+
+// prints the XP from defeated enemies:
+// $0.defeated == true considers only defeated enemies,
+// passes that group to the map command which references
+// the xp element of the tuples with .map {$0.xp},
+// and .reduce(0, +) starts the sum from 0 and adds
+// the values together.
 
 
+//The Post-Combat Summary
+//Your party has just finished a massive battle.
+// You need to process the results to figure out
+// who gets what, and how much total XP was earned.
+//The Data: Create an array of tuples representing
+// the enemies your party faced. Each tuple should
+// contain the enemy's name (String), their XP
+// value (Int), their loot value in gold (Int),
+// and a boolean indicating if they were defeated.
 
+//Using method chaining, do the following:
+//Filter the array to keep only the enemies that
+//were defeated.
+//Sort the remaining enemies by their XP value in
+//descending order (highest XP first).
+//Map the sorted enemies into a string that reads:
+//"[Name] - [XP] XP & [Gold] Gold".
+//The Output: Print each string in the final array.
+//The Bonus: In a separate line of code, calculate the
+//total gold earned from the defeated enemies using .reduce().
 
+let encounterResults = [
+    (name: "Goblin Boss", xp: 200, gold: 50, defeated: true),
+    (name: "Orc Shaman", xp: 150, gold: 30, defeated: true),
+    (name: "Troll", xp: 100, gold: 100, defeated: false),
+    (name: "Goblin Minion 1", xp: 50, gold: 5, defeated: true),
+    (name: "Goblin Minion 2", xp: 50, gold: 5, defeated: true),
+]
+// makes the array of tuples to start with
 
+let defeatedCombatants = encounterResults.filter {$0.defeated == true}.sorted {$0.xp > $1.xp}.map {"\($0.name) - \($0.xp) XP & \($0.gold) Gold."}
+// creates new array, checking each item in previous
+// array to see if defeated is true, then sorts them
+// by highest experience first, then uses .map to change
+// the values into strings.
 
+for combatant in defeatedCombatants {
+    print(combatant)
+    // prints each item in the new array on a separate line
+}
 
-
-
-
-
-
-
-
-
-
-
-
+print("Total gold earned from encounter: \(encounterResults.filter {$0.defeated == true}.map {$0.gold}.reduce(0, +))")
+// prints the total amount of gold from all defeated enemies
 
 

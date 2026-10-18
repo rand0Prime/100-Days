@@ -195,13 +195,90 @@ print("Kaelin has \(Kaelin.hp) HP remaining.")
 // processes 3 attacks by the dragon against the paladin, and
 // applies damage on hits.
 
+print()
 
+//PART 1: THE ITEM
+//Create a struct called Item.
+//Properties: name (String) and weight (Double).
+//
+//PART 2: THE ADVENTURER
+//Create a struct called Adventurer.
+//Properties: name (String), carryCapacity (Double), and
+//inventory (an array of Items, starting empty).
+//Computed Property: currentWeight (Double) that uses
+//    .reduce() to sum up the weight of all items in the inventory.
+//
+//PART 3: THE LOOTING METHOD
+//Add a method to your Adventurer struct.
+//Method: mutating func pickUp(item: Item)
+//Logic: Check if adding the item's weight to currentWeight
+//                    would exceed carryCapacity. If it does,
+//print "Too heavy to carry!". If it doesn't, append the item to the inventory.
+//                    
+//PART 4: THE TREASURE ROOM
+//Put it all together!
+//Create an Adventurer named "Kaelen" with a carry capacity of 30.0.
+//Create three Items: a "Heavy Shield" (weight 15.0), a "Sword" (weight 10.0), and a "Helmet" (weight 8.0).
+//Have Kaelen pick up the items one by one.
+//Print Kaelen's final currentWeight and the names of the items in their inventory.
 
+struct Item {
+    let name: String
+    var weight: Double
+}
+// creates a struct for generating items
 
+struct Adventurer {
+    let name: String
+    var carryCapacity: Double
+    var inventory: Array<Item> = []
+    
+    var currentWeight: Double {
+        inventory.map {$0.weight}.reduce(0.0, +)
+    }// sets up computed property for current inventory weight
+     // by using the map command on each item's weight, and
+     // using 'reduce' to add them all together, starting with
+     // with a 0.0 double.
+    
+    var availableCarryCapacity: Double {
+        carryCapacity - currentWeight
+    }// makes another computed property to make an easily accessible
+     // way of checking availabile carry capacity
+    
+    mutating func pickUp(item: Item) {
+        // creates the ability to pick up items and add to inventory
+        if item.weight < availableCarryCapacity {
+            inventory.append(item)
+            print("Acquired \(item.name).")
+        } else {
+            print("This item would overencumber you! Time to go to the gym.")
+        }
+    }
+}
+// creates a struct for generating adventurers with the
+// ability to carry items created from Item struct
 
+var Kaelen = Adventurer(name: "Kaelen", carryCapacity: 30.0)
+// creates adventurer Kaelen
 
+let heavyShield = Item(name: "Heavy Shield", weight: 15.0)
+let sword = Item(name: "Sword", weight: 10.0)
+let helmet = Item(name: "Helmet", weight: 8.0)
+// creates items to be interacted with
 
+print(Kaelen.inventory)
+// confirms that Kaelen's inventory is empty
 
+Kaelen.pickUp(item: heavyShield)
+Kaelen.pickUp(item: sword)
+Kaelen.pickUp(item: helmet)
+// runs the code to attempt to pick up the items created above,
+// checking available carry capacity for each
+
+print(Kaelen.inventory)
+// prints Kaelen's inventory, confirming that there was not enough
+// carry capacity to pick up the helmet
+print()
 
 
 

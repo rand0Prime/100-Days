@@ -126,6 +126,7 @@ struct Character {
 }   // creates an example character that can be used anywhere in the project,
 // such as on the character creation screens when developing the page itself to
 // make sure that everything looks the way I would want it to look
+print()
 
 //*** CHECKPOINT 6 ***
 //--------------------------
@@ -138,14 +139,68 @@ struct Character {
 // think about variables and access control
 // don't allow invalid gears - 1...10 seems a fair maximum range
 
+struct Car {
+    let model: String
+    let numberOfSeats: Int
+    private(set) var currentGear = 1
+//creates the struct with properties
+    
+    mutating func changeGear(shift: String) {
+//creates a method for changing gears
+        switch currentGear {
+        case 1:
+            if shift == "down" {
+                print("Cannot shift down from first gear. Time to go fast!")
+            } else if shift == "up" {
+                currentGear += 1
+                print("Shifting up to gear \(currentGear).")
+            } else {
+                print("Please shift either 'up' or 'down'.")
+//creates a block for 1st gear preventing it from shifting down
+            }
+        case 10:
+            if shift == "up" {
+                print("Cannot shift up from 10th gear. Time to go shift down!")
+            } else if shift == "down" {
+                currentGear -= 1
+                print("Shifting down to gear \(currentGear).")
+            } else {
+                print("Please shift either 'up' or 'down'.")
+            }
+//creates a block for 10th gear preventing it from going up
+        default:
+            if shift == "up" {
+                currentGear += 1
+                print("Shifting up to gear \(currentGear).")
+            } else if shift == "down" {
+                currentGear -= 1
+                print("Shifting down to gear \(currentGear).")
+            } else {
+                print("Please shift either 'up' or 'down'.")
+//provides instruction for any gear that is not 1st or 10th
+            }
+        }
+    }
+}
 
+var alero = Car(model: "Alero", numberOfSeats: 5)
+//creates instance of Car with parameters to pass into struct
 
-
-
-
-
-
-
+print(alero.currentGear)
+alero.changeGear(shift: "up")
+alero.changeGear(shift: "up")
+alero.changeGear(shift: "up")
+alero.changeGear(shift: "up")
+alero.changeGear(shift: "up")
+alero.changeGear(shift: "up")
+alero.changeGear(shift: "up")
+alero.changeGear(shift: "up")
+alero.changeGear(shift: "up")
+//shifts up to 10th gear
+print(alero.currentGear)
+alero.changeGear(shift: "up")
+print(alero.currentGear)
+//confirms the block worked for keeping the car from going past 10th gear
 
 
 

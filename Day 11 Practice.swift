@@ -240,10 +240,164 @@ luthorXP.totalXP += 732
 print(luthorXP.level)
 //prints the level value again to reflect that enough xp has been gained
 //to move to the next level
+print()
 
 
+//PROBLEM 7: THE ENCUMBRANCE CHECK
+//Create a struct called Inventory with currentWeight (Double) and maxWeight (Double).
+//Add a computed property called encumbrancePercentage (Double).
+//Get: Return (currentWeight / maxWeight) * 100.
+//Set: Update currentWeight to be (newValue / 100) * maxWeight.
 
+struct Inventory {
+    var currentWeight: Double
+    var maxWeight: Double
+//sets up struct and properties as doubles
+    var encumbrancePercentage: Double {
+        get {
+//sets up the computed property
+            return (currentWeight / maxWeight) * 100
+//calculates the percentage for encumbrance
+        }
+        set {
+            maxWeight = (newValue / 100 * maxWeight)
+        }
+//reverse-engineers the calculation for maxWeight
+    }
+}
+var bagOfHolding = Inventory(currentWeight: 100, maxWeight: 1000)
+print(bagOfHolding.maxWeight)
+print(bagOfHolding.encumbrancePercentage)
+//creates the bag of holding instance from Inventory struct, and checks
+//output to make sure things printed corerctly
+print()
 
+//PROBLEM 8: THE MANA POOL
+//Create a struct called ManaPool with currentMana (Int) and maxMana (Int). Add a
+//computed property called manaPercentage (Int).
+//Get: Return mana percentage via computed property
+//Set: Update currentMana property accordingly
+
+struct ManaPool {
+    var currentMana: Double
+    var maxMana: Double
+    var manaPercentage: Double {
+        get {
+            return (currentMana / maxMana) * 100
+        }
+        set {
+         currentMana = (newValue / 100) * maxMana
+        }
+    }
+}
+var frazilMana = ManaPool(currentMana: 35, maxMana: 115)
+print(frazilMana.currentMana)
+print(frazilMana.maxMana)
+print(frazilMana.manaPercentage)
+print()
+
+//PROBLEM 1: THE BANK ACCOUNT
+//Concepts: Access Control, Methods
+//Create a struct called BankAccount.
+//Give it a private(set) var balance: Double that starts at 0.0.
+//Add a mutating func deposit(amount: Double) that adds to the balance.
+//Add a mutating func withdraw(amount: Double) -> Bool that subtracts
+//from the balance if there are sufficient funds (and returns true),
+//or returns false if there aren't.
+
+struct BankAccount {
+//creates struct
+    private(set) var balance: Double = 0.0
+//creates callable, externally-unchangeable balance variable with a
+//starting value of 0
+    mutating func deposit(amount: Double) {
+        balance += amount
+//creates a function for adding a double to the balance value
+    }
+    mutating func withdraw(amount: Double) -> Bool {
+        if (balance - amount) >= 0.0 {
+//checks to see if the balance would go negative with the withrawal
+            balance -= amount
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+var account = BankAccount()
+account.deposit(amount: 50.0)
+print(account.balance)
+print(account.withdraw(amount: 25.0))
+print(account.balance)
+//makes instance of bankAccount and checks to make sure funcs work
+print()
+
+//PROBLEM 2: THE LEVELING SYSTEM
+//Concepts: Computed Properties, Methods
+//Create a struct called Player.
+//Give it a var xp: Int that starts at 0.
+//Add a computed property level: Int that returns xp / 1000.
+//Add a mutating func completeQuest(reward: Int) that adds to the xp
+//and prints a message if the player leveled up.
+                        
+struct Player {
+    private(set) var xp: Int = 1000
+//creates struct and a property which starts at 0
+   private(set) var level: Int {
+       get {
+           return xp / 1000
+//gives level property instructions for how to calculate value
+        }
+        set {
+            xp = newValue * 1000
+//inverts level calculations to give xp property value
+        }
+    }
+    mutating func completeQuest(reward: Int){
+        xp += reward
+//adds Int to xp property value
+    }
+}
+var frazil = Player()
+frazil.completeQuest(reward: 350)
+print("Frazil completed a quest and gained xp. They are level \(frazil.level). They are \((1000 * (frazil.level + 1)) - frazil.xp ) points away from \(frazil.level + 1).")
+frazil.completeQuest(reward: 700)
+print("Frazil completed a quest and gained xp. They are level \(frazil.level). They are \((1000 * (frazil.level + 1)) - frazil.xp ) points away from \(frazil.level + 1).")
+//adds xp to frazil, computes math to account for what is needed to level up
+print()
+
+//PROBLEM 3: THE ITEM SHOP
+//Concepts: Custom Initializers, Methods
+//Create a struct called ShopItem.
+//Give it let name: String and var price: Int.
+//Create a custom initializer that takes a name and a price, but ensures
+//the price is never less than 1.
+//Add a mutating func applyDiscount(percent: Int) that reduces the
+//price by the given percentage.
+
+struct ShopItem {
+    let name: String
+    var price: Int
+//creates struct and properties
+    init(name: String, price: Int) {
+        self.name = name
+        self.price = price
+        if self.price == 0 {
+            self.price = 1
+        }
+        //initiates the properties, and changes the default minimum
+        //value of price to 1 if it is entered as 0 at initialization
+    }
+    mutating func applyDiscount(discountPct numerator: Int) {
+        price = (price * (100 - numerator)) / 100
+//creates discount function applying the discount to the price of the item
+    }
+}
+var tombOfKnowledge = ShopItem(name: "Tomb of Knowledge", price: 42)
+tombOfKnowledge.applyDiscount(discountPct: 10)
+print(tombOfKnowledge.price)
+//prints out the discounted price of the item
 
 
 
